@@ -4,6 +4,7 @@ export default createStore({
   state() {
     return {
       counter: 0,
+      isLoggedIn: false,
     };
   },
   mutations: {
@@ -13,6 +14,9 @@ export default createStore({
     increase(state, { value }) {
       state.counter = state.counter + value;
     },
+    setAuth(state, { isAuth }) {
+      state.isLoggedIn = isAuth;
+    },
   },
   // actions allows us to use async functions
   actions: {
@@ -21,6 +25,12 @@ export default createStore({
         context.commit('addOne');
       }, 2000);
     },
+    login(context) {
+      context.commit('setAuth', { isAuth: true });
+    },
+    logout(context) {
+      context.commit('setAuth', { isAuth: false });
+    },
   },
   getters: {
     finalCounter(state) {
@@ -28,6 +38,9 @@ export default createStore({
     },
     normalizedCounter(state) {
       return state.counter;
+    },
+    userIsAuthenticated(state) {
+      return state.isLoggedIn;
     },
   },
 });
