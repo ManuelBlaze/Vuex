@@ -14,6 +14,14 @@ export default createStore({
       state.counter = state.counter + value;
     },
   },
+  // actions allows us to use async functions
+  actions: {
+    addOne(context) {
+      setTimeout(() => {
+        context.commit('addOne');
+      }, 2000);
+    },
+  },
   getters: {
     finalCounter(state) {
       return state.counter * 2;
