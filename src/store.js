@@ -10,5 +10,8 @@ export default createStore({
     addOne(state) {
       state.counter++;
     },
+    increase(state, { value }) {
+      state.counter = state.counter + value;
+    },
   },
 });
